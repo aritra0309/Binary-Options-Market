@@ -58,7 +58,7 @@ $$
 The implementation obtains the slope from sample covariance and variance (with ridge inflation in the risk-aware versions):
 
 $$
-\beta_{i,R}=\frac{\operatorname{Cov}(\Delta R,r_i)}{\operatorname{Var}(\Delta R)(1+\lambda)},
+\beta_{i,R}=\frac{\mathrm{Cov}(\Delta R,r_i)}{\mathrm{Var}(\Delta R)(1+\lambda)},
 \qquad
 \alpha_i=\overline{r_i}-\beta_{i,R}\overline{\Delta R}.
 $$
@@ -66,16 +66,16 @@ $$
 It then decomposes residual covariance into one common sector factor and idiosyncratic variance.  It chooses the company with larger residual variance as the sector-scale anchor, assigns that company sector beta $1$, and sets
 
 $$
-\sigma_S^2=\max\left(\operatorname{Var}(\varepsilon_A),\operatorname{Var}(\varepsilon_T)\right),
+\sigma_S^2=\max\left(\mathrm{Var}(\varepsilon_A),\mathrm{Var}(\varepsilon_T)\right),
 \qquad
-\beta_{\mathrm{other},S}=\frac{\operatorname{Cov}(\varepsilon_A,\varepsilon_T)}{\sigma_S^2}.
+\beta_{\mathrm{other},S}=\frac{\mathrm{Cov}(\varepsilon_A,\varepsilon_T)}{\sigma_S^2}.
 $$
 
 The anchor has zero idiosyncratic variance in this factorization and the other company receives the residual:
 
 $$
 \sigma_{\mathrm{other},\mathrm{idio}}^2=
-\max\left(\operatorname{Var}(\varepsilon_{\mathrm{other}})-
+\max\left(\mathrm{Var}(\varepsilon_{\mathrm{other}})-
 \beta_{\mathrm{other},S}^2\sigma_S^2,0\right).
 $$
 
@@ -107,13 +107,13 @@ The conditional level moments used for multi-leg approximations are
 $$
 \mathbb{E}[X_{i,T}]=e^{\mu_i+v_i/2},
 \qquad
-\operatorname{Var}(X_{i,T})=\mathbb{E}[X_{i,T}]^2(e^{v_i}-1).
+\mathrm{Var}(X_{i,T})=\mathbb{E}[X_{i,T}]^2(e^{v_i}-1).
 $$
 
 For two company legs, the shared factor produces the level covariance
 
 $$
-\operatorname{Cov}(X_{A,T},X_{T,T})=
+\mathrm{Cov}(X_{A,T},X_{T,T})=
 \mathbb{E}[X_{A,T}]\mathbb{E}[X_{T,T}]
 \left(e^{T\beta_{A,S}\beta_{T,S}\sigma_S^2}-1\right).
 $$
@@ -124,11 +124,11 @@ FED moves on a non-negative grid with step $h=0.25$.  At rate $r$, mean reversio
 
 $$
 \tau(r)=\kappa(r^*-r),
-\quad p_\uparrow(r)=\operatorname{clip}(p_\uparrow+\tau(r),0,1),
+\quad p_\uparrow(r)=\mathrm{clip}(p_\uparrow+\tau(r),0,1),
 $$
 
 $$
-p_\downarrow(r)=\operatorname{clip}(p_\downarrow-\tau(r),0,1-p_\uparrow(r)),
+p_\downarrow(r)=\mathrm{clip}(p_\downarrow-\tau(r),0,1-p_\uparrow(r)),
 \quad p_0(r)=1-p_\uparrow(r)-p_\downarrow(r).
 $$
 
@@ -158,7 +158,7 @@ where $K'=K-w_Rr$.  For a relative-value pair with one positive and one negative
 
 $$
 q(r)=\Phi\left(\frac{(\mu_A-\mu_T)-\log(|w_T|/w_A)}
-{\sqrt{v_A+v_T-2\operatorname{Cov}(\log X_A,\log X_T)}}\right).
+{\sqrt{v_A+v_T-2\mathrm{Cov}(\log X_A,\log X_T)}}\right).
 $$
 
 Other two-leg combinations use moment matching for $Y_T$:
@@ -166,7 +166,7 @@ Other two-leg combinations use moment matching for $Y_T$:
 $$
 m_Y=\sum_i w_i\mathbb{E}[X_i],
 \qquad
-s_Y^2=\sum_iw_i^2\operatorname{Var}(X_i)+2w_Aw_T\operatorname{Cov}(X_A,X_T),
+s_Y^2=\sum_iw_i^2\mathrm{Var}(X_i)+2w_Aw_T\mathrm{Cov}(X_A,X_T),
 $$
 
 $$
@@ -195,17 +195,17 @@ nF_0, & n\ge0,\\
 \end{cases}
 $$
 
-With contract budget $B$, utilization is $u=\operatorname{clip}(\mathrm{risk}/B,0,1)$.  The reservation price is shifted away from existing inventory,
+With contract budget $B$, utilization is $u=\mathrm{clip}(\mathrm{risk}/B,0,1)$.  The reservation price is shifted away from existing inventory,
 
 $$
-R=\operatorname{clip}\left(F_0-0.05\,\operatorname{sign}(n)\,u\,
+R=\mathrm{clip}\left(F_0-0.05\,\mathrm{sign}(n)\,u\,
 \max(0.35,4F_0(1-F_0)),0.005,0.995\right),
 $$
 
 and the half-spread widens for event uncertainty, maturity, and inventory use:
 
 $$
-H=\operatorname{clip}\left(0.012+0.018\sqrt{F_0(1-F_0)}+0.002\sqrt{T}
+H=\mathrm{clip}\left(0.012+0.018\sqrt{F_0(1-F_0)}+0.002\sqrt{T}
 +\frac{0.025\sqrt{F_0(1-F_0)}}{\sqrt{T}}+0.025u,0.015,0.12\right).
 $$
 
